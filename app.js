@@ -5,9 +5,27 @@ let sentences = [
   'Hope that is ok',
   'It is changed now so...'];
 let sentencesCounter = 0; //counts ea. sentence
-let sentence = sentences[sentencesCounter]; //counts ea. sentence through the sentences
+let sentence = sentences[sentencesCounter]; //ea. individual sentence
 let letterCounter = 0;   //counts ea. letter
 let eaLetter = sentence[letterCounter]; //counts ea. letter through the sentence
+let numberOfWords = 24;
+let numberOfMistakes = 0;
+var myVar = setInterval(myTimer, 1000);
+
+//clock
+function myTimer() {
+  var d = new Date();
+  var t = d.toLocaleTimeString();
+  $("#timeClock").html(t);
+}
+
+//timestamp of first keypress
+$(document).one("keypress",function () {
+  var dt = new Date();
+  var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+  $('#stopWatch').append(time);
+})
+
 
 
 
@@ -36,8 +54,8 @@ $(document).keypress(function (e) {
   let keyCode = e.key.charCodeAt();
   let idKeyCode = "#" + keyCode;
   $(idKeyCode).addClass('highlight');
-});  
-  
+});
+
 $(document).keyup(function (e) {
   let keyCode = e.key.charCodeAt();
   let idKeyCode = "#" + keyCode;
@@ -46,80 +64,88 @@ $(document).keyup(function (e) {
 
 
 
+      //var lt = new Date();
+       //var timeTwo = lt.getHours() + ":" + lt.getMinutes() + ":" + lt.getSeconds();
+
 
 //all the other stuff
 $(document).keypress(function (e) {
-if(sentence.charCodeAt(letterCounter) === e.which){ //The event.which is an inbuilt property in jQuery which is used to return which keyboard key or mouse button was pressed for the event.
-  $('#feedback').append('<span class ="glyphicon glyphicon-thumbs-up"></span>')
-  $('#yellow-block').css('left', '+=18')
-  letterCounter++;
-  eaLetter = sentence[letterCounter];
-  $('#target-letter').text(eaLetter);
+  
 
-}else{
-  $('#feedback').append('<span class ="glyphicon glyphicon-thumbs-down"></span>')
-}
+  if (sentence.charCodeAt(letterCounter) === e.which) { //The event.which is an inbuilt property in jQuery which is used to return which keyboard key or mouse button was pressed for the event.
+    $('#feedback').append('<span class ="glyphicon glyphicon-thumbs-up"></span>')
 
-  if(letterCounter === sentence.length) { 
-    letterCounter = 0;
-    $('#yellow-block').css('left', '15px')
-    if(sentencesCounter<=sentences.length){ //
-      clear();
-    sentencesCounter++;
-    sentence = sentences[sentencesCounter];
-    $('#sentence').append(sentence);
+    $('#yellow-block').css('left', '+=17.4')
+    letterCounter++;
     eaLetter = sentence[letterCounter];
     $('#target-letter').text(eaLetter);
-  }
-    
-    
-    
-    
-    
-}
 
-  
+  } else {
+    $('#feedback').append('<span class ="glyphicon glyphicon-thumbs-down"></span>')
+    console.log(numberOfMistakes);
+  }
+
+  if (letterCounter === sentence.length) { //where the sentence changes
+    letterCounter = 0;
+    $('#yellow-block').css('left', '15px')
+
+    if (sentencesCounter != 4) {
+      clear();
+      sentencesCounter++;
+      sentence = sentences[sentencesCounter];
+      $('#sentence').append(sentence);
+      eaLetter = sentence[letterCounter];
+      $('#target-letter').text(eaLetter);
+    
+    } else if (sentencesCounter = 4) {
+      var lt = new Date(); //time stamp for finished
+       var timeTwo = lt.getHours() + ":" + lt.getMinutes() + ":" + lt.getSeconds();
+      $('#yellow-block').remove();
+       clear();
+      $('#feedback').text('You Win!!');
+      $('#stopWatchTwo').append(timeTwo);
+    }
+
+  } 
+
+
+
 })
-function clear(){
+
+
+
+function clear() {
   $('#sentence').empty();
   $('#target-letter').empty();
   $('#feedback').empty();
 }
 
-//let eaLetterCode = eaLetter.charCodeAt();
-// letterCounter++;
-// $(document).keydown(function (e) {
-//   let keyCode = e.key.charCodeAt();
-//   if(sentences[letterCounter].charCodeAt() === keyCode){
-//   $('#yellow-block').css('left', '15px');}
-// })
-  
-//   let keyCode = e.key.charCodeAt();
-//   let idKeyCode = "#" + keyCode;
-  
-//  if(idKeyCode = eaLetter) {
-   
-//     $('#yellow-block').css('margin-left', '10px');
-    
-// }
-//   eaLetter++;
 
-// let yellowHighligt = $('$yellow-block').css({
-//   'position': 'relative',
-//   'margin-left': '10px'
+// $(document).one("keypress", function () {
+//   if(sentencesCounter=4){
+// //     var lt = new Date();
+//        var timeTwo = lt.getHours() + ":" + lt.getMinutes() + ":" + lt.getSeconds();
+//        $('stopWatchTwo').append(timeTwo);
 // })
 
-// letterCounter++;
-// if (sentences[sentanceCounter].length == letterCounter.length) {
-//   sentanceCounter++;
-// }
-// $(document).keypress(function (e) {
-//   if (e.key.charCodeAt() === sentances[letterCounter].charCodeAt()) {
-//     $('#yellow-block').css('margin-left', '15px')
+
+
+
+
+// $(document).return(function () {
+// if(sentencesCounter>=5){
+//   let $btn = $('<button>Play Again?</button>');
+//   $btn.addClass = 'btnReplay';
+//   $($btn).insertAfter('#target-letter');
 //   }
 // })
 
 
+// $('#stopWatch').keypress( function (){
+//   setInterval(function() {
+//     $('.Timer').text(Math.round((new Date - start) / 1000, 0) + " Seconds");;
+// })
+// })
 
 
 

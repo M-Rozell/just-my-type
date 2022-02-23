@@ -1,10 +1,18 @@
+body{
+  background-color: gray;
+}
+#sentence,#target-letter{
+  color: white;
+}
+
 * {
   margin: 0;
   padding: 0;	
 }
 
+
 .highlight {
-background-color: gray;
+background-color: rgb(48, 51, 46);
 
 }
 
@@ -17,9 +25,10 @@ background-color: gray;
 #yellow-block {
   position: absolute;
   margin-top: 9px;
+  margin-left: .1px;
   height: 15px;
   width: 15px;
-  background-color: yellow;
+  background-color: rgb(48, 51, 46);
   
 }
 
@@ -40,9 +49,29 @@ background-color: gray;
   font-size: 20px;
 }
 .glyphicon-thumbs-up {
-  color: #1DA237
+  color: rgb(115, 252, 4)
 }
 
 .glyphicon-thumbs-down {
   color : #CD2626
+}
+#timeClock{
+  text-align: center;
+}
+#stopWatch,#stopWatchTwo{
+  margin: 2px;
+  background-color: rgb(48, 51, 46);
+  width: 100px;
+  height: 25px;
+  line-height: 25px;
+  color: white;
+  text-align: center;
+  vertical-align: auto;
+  ;
+  
+}
+
+#feedback{
+  color: white;
+  font-size: xx-large;
 }
