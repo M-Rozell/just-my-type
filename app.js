@@ -4,6 +4,7 @@ let sentences = [
   'I also wanted shorter sentences',
   'Hope that is ok',
   'It is changed now so...'];
+
 let sentencesCounter = 0; //counts ea. sentence
 let sentence = sentences[sentencesCounter]; //ea. individual sentence
 let letterCounter = 0;   //counts ea. letter
@@ -98,20 +99,15 @@ $(document).keypress(function (e) {
       let $btn = $('<button class = "btn">Play Again?</button>');
       $btn.insertAfter('#target-letter');
       $('#feedback').text('You Win!!');
-      let minutes = dt - lt;
+      let minutes = lt -dt;
       //Josh said not to worry about the accuracy of this. it does not work correctly
-      $('#target-letter').append("Your WPM!", + numberOfWords / minutes - 2 * numberOfMistakes);
+      let wpm = numberOfWords / minutes - 2 * numberOfMistakes;
+      $('#target-letter').append("Your WPM Is ", + wpm);
       $(".btn").click(function () {
         location.reload();
       });
-    
     }
-
-
-
   }
-
-
 
 })
 
@@ -122,31 +118,7 @@ function clear() {
 }
 
 
-// $(document).one("keypress", function () {
-//   if(sentencesCounter=4){
-// //     var lt = new Date();
-//        var timeTwo = lt.getHours() + ":" + lt.getMinutes() + ":" + lt.getSeconds();
-//        $('stopWatchTwo').append(timeTwo);
-// })
 
-
-
-
-
-// $(document).return(function () {
-// if(sentencesCounter>=5){
-//   let $btn = $('<button>Play Again?</button>');
-//   $btn.addClass = 'btnReplay';
-//   $($btn).insertAfter('#target-letter');
-//   }
-// })
-
-
-// $('#stopWatch').keypress( function (){
-//   setInterval(function() {
-//     $('.Timer').text(Math.round((new Date - start) / 1000, 0) + " Seconds");;
-// })
-// })
 
 
 
