@@ -59,6 +59,7 @@ background-color: rgb(48, 51, 46);
   text-align: center;
 }
 #stopWatch,#stopWatchTwo{
+  
   margin: 2px;
   background-color: rgb(48, 51, 46);
   width: 100px;
@@ -67,11 +68,19 @@ background-color: rgb(48, 51, 46);
   color: white;
   text-align: center;
   vertical-align: auto;
-  ;
-  
 }
+
+
 
 #feedback{
   color: white;
   font-size: xx-large;
+}
+
+.btn {
+  display: block;
+  margin: 0 auto;
+  background-color: rgb(48, 51, 46);
+  color: white;
+  
 }

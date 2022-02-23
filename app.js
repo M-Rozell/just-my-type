@@ -20,19 +20,15 @@ function myTimer() {
 }
 
 //timestamp of first keypress
-$(document).one("keypress",function () {
-  var dt = new Date();
+var dt = new Date();
+$(document).one("keypress", function () {
   var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
   $('#stopWatch').append(time);
 })
 
-
-
-
-$('#target-letter').text(eaLetter);
-$('#sentence').append(sentence);
-
-$('#keyboard-upper-container').hide();
+$('#target-letter').text(eaLetter); //1st sentence target letters
+$('#sentence').append(sentence); //1st sentence at top of screen
+$('#keyboard-upper-container').hide(); //hide uppercase-keyboard on open
 
 //shift keyboard function
 $(document).keydown(function (e) {
@@ -60,17 +56,12 @@ $(document).keyup(function (e) {
   let keyCode = e.key.charCodeAt();
   let idKeyCode = "#" + keyCode;
   $(idKeyCode).removeClass('highlight');
-});
-
-
-
-      //var lt = new Date();
-       //var timeTwo = lt.getHours() + ":" + lt.getMinutes() + ":" + lt.getSeconds();
+})
 
 
 //all the other stuff
 $(document).keypress(function (e) {
-  
+
 
   if (sentence.charCodeAt(letterCounter) === e.which) { //The event.which is an inbuilt property in jQuery which is used to return which keyboard key or mouse button was pressed for the event.
     $('#feedback').append('<span class ="glyphicon glyphicon-thumbs-up"></span>')
@@ -82,7 +73,7 @@ $(document).keypress(function (e) {
 
   } else {
     $('#feedback').append('<span class ="glyphicon glyphicon-thumbs-down"></span>')
-    console.log(numberOfMistakes);
+    console.log(numberOfMistakes); //mistakes
   }
 
   if (letterCounter === sentence.length) { //where the sentence changes
@@ -96,23 +87,33 @@ $(document).keypress(function (e) {
       $('#sentence').append(sentence);
       eaLetter = sentence[letterCounter];
       $('#target-letter').text(eaLetter);
-    
+
     } else if (sentencesCounter = 4) {
       var lt = new Date(); //time stamp for finished
-       var timeTwo = lt.getHours() + ":" + lt.getMinutes() + ":" + lt.getSeconds();
+      var timeTwo = lt.getHours() + ":" + lt.getMinutes() + ":" + lt.getSeconds();
       $('#yellow-block').remove();
-       clear();
-      $('#feedback').text('You Win!!');
+      clear();
+
       $('#stopWatchTwo').append(timeTwo);
+      let $btn = $('<button class = "btn">Play Again?</button>');
+      $btn.insertAfter('#target-letter');
+      $('#feedback').text('You Win!!');
+      let minutes = dt - lt;
+      //Josh said not to worry about the accuracy of this. it does not work correctly
+      $('#target-letter').append("Your WPM!", + numberOfWords / minutes - 2 * numberOfMistakes);
+      $(".btn").click(function () {
+        location.reload();
+      });
+    
     }
 
-  } 
+
+
+  }
 
 
 
 })
-
-
 
 function clear() {
   $('#sentence').empty();
