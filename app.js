@@ -27,8 +27,8 @@ $(document).one("keypress", function () {
   $('#stopWatch').append(time);
 })
 
-$('#target-letter').text(eaLetter); //1st sentence target letters
-$('#sentence').append(sentence); //1st sentence at top of screen
+$('#target-letter').text(eaLetter);    //1st sentence target letters
+$('#sentence').append(sentence);       //1st sentence at top of screen
 $('#keyboard-upper-container').hide(); //hide uppercase-keyboard on open
 
 //shift keyboard function
@@ -59,10 +59,8 @@ $(document).keyup(function (e) {
   $(idKeyCode).removeClass('highlight');
 })
 
-
-//all the other stuff
+//all the other stuff//sentence, letter and block counter
 $(document).keypress(function (e) {
-
 
   if (sentence.charCodeAt(letterCounter) === e.which) { //The event.which is an inbuilt property in jQuery which is used to return which keyboard key or mouse button was pressed for the event.
     $('#feedback').append('<span class ="glyphicon glyphicon-thumbs-up"></span>')
@@ -99,7 +97,7 @@ $(document).keypress(function (e) {
       let $btn = $('<button class = "btn">Play Again?</button>');
       $btn.insertAfter('#target-letter');
       $('#feedback').text('You Win!!');
-      let minutes = lt -dt;
+      let minutes = lt - dt;
       //Josh said not to worry about the accuracy of this. it does not work correctly
       let wpm = numberOfWords / minutes - 2 * numberOfMistakes;
       $('#target-letter').append("Your WPM Is ", + wpm);
